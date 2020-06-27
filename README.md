@@ -1,6 +1,6 @@
 # Idiomatic Go 
 
-If you learned some Go and want to learn how to write idiomatic Go code then my suggestion would be read the all the Go proverbs available out there [Go Proverb](https://go-proverbs.github.io/). And along the way of your learning spend sometime with each of them and get the idea what actually it means. Most of the Go-proverbs are intiatiated by Rob Pike and he also gave talk on most of them.  
+If you learned some Go and want to learn how to write idiomatic Go code then my suggestion would be read the all the Go proverbs available here [Go Proverb](https://go-proverbs.github.io/). Each of them has deep philosophy which portrays Go's behavior and best practices.  Along the way of your learning spend sometime with each of them and get the idea what of actually each of them means. Most of the Go-proverbs are intiatiated by Rob Pike and he also gave talk on most of them. So watching/listening them would help a lot to learn deeply about Go.   
 
 In this writing, I'm trying to made some bullet-points with little details, which are some practices that I follow and some of them are widely adopted/recommended by the Go community.  
 
