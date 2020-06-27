@@ -139,5 +139,7 @@ A Good Go(Gopher) developer loves to write tests and don't want to avoid it.
 Go has a good echo-system for writing test. Thus it encourage you write unit test for most of your function. I think Go developers are currently way ahead of other developers if it's about how much test coverage they have. 
 If you don't do TDD, write the test at least when you are testing your function, if that makes sense.
 
+[**TO BE Continued...**]
+
 
                                                                                                                    
