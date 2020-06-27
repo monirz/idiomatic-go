@@ -15,7 +15,8 @@ In this writing, I'm trying to made some bullet-points with little details, whic
 
 ## Error Handling
 
-A great talk by **Dave Cheney** on error handling, very consize and practical: [GopherCon 2016: Dave Cheney - Dont Just Check Errors Handle Them Gracefully](https://www.youtube.com/watch?v=lsBF58Q-DnY) 
+A great talk by **Dave Cheney** on error handling, very consize and practical: 
+* [GopherCon 2016: Dave Cheney - Dont Just Check Errors Handle Them Gracefully](https://www.youtube.com/watch?v=lsBF58Q-DnY) 
 
 i.e. When returning error from a function and needs to add cintext to the error, use Wrap function like this: 
 
@@ -44,7 +45,8 @@ Another good example for checking duplicate entry/ breaking unique key constrain
 
 ```
 
-More details on the customer error type wrapping and unwrapping could be found in this golang official blog: [Working with Errors in Go 1.13](https://blog.golang.org/go1.13-errors)
+More details on the customer error type wrapping and unwrapping could be found in this golang official blog:
+* [Working with Errors in Go 1.13](https://blog.golang.org/go1.13-errors)
 
 
 ## Project Structure 
@@ -55,11 +57,13 @@ But there is a thrid one, which is Go project structure. Which could be confusin
 
 In the beginning I used global variable to store database instance, you know that's a bad practice, right? Even though it could just work fine!  
 
-Later storing it into the struct was the solution, **Mat Ryer** gave/wrote a nice talk on this topic called [How I write Go HTTP services after seven years](https://medium.com/@matryer/how-i-write-go-http-services-after-seven-years-37c208122831)  
+Later storing it into the struct was the solution, **Mat Ryer** gave/wrote a nice talk on this topic called 
+* [How I write Go HTTP services after seven years](https://medium.com/@matryer/how-i-write-go-http-services-after-seven-years-37c208122831)  
 
 All though my journy with Go like 3 year or so, I found quite similar pattern while making HTTP services. This approach is very clean and easy to implement. It works well for plain HTTP services.      
 
-But if it's about project structure then this one is probably most mentioned and recommended layout for creating big Go project: [Standard Package Layout](https://medium.com/@benbjohnson/standard-package-layout-7cdbc8391fc1) written by **Ben Johnson**. Which is widely adopted in the gophers community. And this is the one I tend to follow these days.
+But if it's about project structure then this one is probably most mentioned and recommended layout for creating big Go project:
+* [Standard Package Layout](https://medium.com/@benbjohnson/standard-package-layout-7cdbc8391fc1) written by **Ben Johnson**. Which is widely adopted in the gophers community. And this is the one I tend to follow these days.
 
 ## Router 
 
@@ -67,13 +71,17 @@ Find a router that is compatible with http handler method from the `net/http` pa
 
 At the very beginning I used Gin (not as a framework though) just for routing and middleware. But Gin have some bugs and some performance issues. 
 
-Later used [gorilla/mux](https://github.com/gorilla/mux), but it's a lot slower than a few other ones those came later like fasthttp, httprouter and that because of it uses regex handling pattern matching. whether other latest HTTP routers for Go are made by following Trie/Radix tree based data strcuture.
+Later used 
+* [gorilla/mux](https://github.com/gorilla/mux), but it's a lot slower than a few other ones those came later like fasthttp, httprouter and that because of it uses regex handling pattern matching. whether other latest HTTP routers for Go are made by following Trie/Radix tree based data strcuture.
 
-I have made a one called [Track](https://github.com/monirz/track) using Trie data structure as well, it's pretty fast and light weight but it needs some heavy testing. Was working on the benchmarking and stuff, got busy later,  won't recommend to use it for production. 
+I have made a one called 
+* [Track](https://github.com/monirz/track) using Trie data structure as well, it's pretty fast and light weight but it needs some heavy testing. Was working on the benchmarking and stuff, got busy later,  won't recommend to use it for production. 
 
-For production, I use [Chi](https://github.com/go-chi/chi) for http routing, it's 100% compatible with net/http, fast and also uses less memory than other ones. I tested and ran the becnhmark personally. They also added the benchmark log in their doc. 
+For production, I use 
+ * [Chi](https://github.com/go-chi/chi) for http routing, it's 100% compatible with net/http, fast and also uses less memory than other ones. I tested and ran the becnhmark personally. They also added the benchmark log in their doc. 
 
-Final thought, I'll quote a comment from this [thread](https://www.reddit.com/r/golang/comments/a3qcid/httprouter_chi_gin_gorillamux/):
+Final thought, I'll quote a comment from this 
+ * [thread](https://www.reddit.com/r/golang/comments/a3qcid/httprouter_chi_gin_gorillamux/):
 > router performance is less likely to be your bottleneck, but I still think if you can have something that's really fast, and has a great feature set (Chi), then why choose to use something slower with similar features?     
 
 
@@ -81,7 +89,7 @@ Final thought, I'll quote a comment from this [thread](https://www.reddit.com/r/
 
  People come from other languages to Go, they try write the way code they used write code in their favorite language. When you are learning a new langauge it's just not the syntax, it's the whole echo-system and best practices of that language. 
  
- **[When in Go, do as the Gopher do](https://talks.golang.org/2014/readability.slide#1)**  
+ * **[When in Go, do as the Gopher do](https://talks.golang.org/2014/readability.slide#1)**  
 
  Go is not a OOP language, people tend to do that a lot like implemnting pure OOP pattern whose are come from OOP language. Go is a C like language with the modern features and easier to writing code. Yet you can adapt some good parts/feature from OOP in Go.       
 
@@ -90,9 +98,10 @@ In idiomatic Go your interface{} should be small like they way it is used in the
 As someone I was talking to earlier, where he said clean-architecture `-- it's just two API level, One to actually do everything and one to hook it up to the outside world(http, gRPC,websockets, you could also maybe turn it into a CLI easily or any other protocol if you need). There is a third level below the business logic to handle things like talking to shipping companies, xlsx export, etc. People tend to not think about things once they find a term and become diehard fans using it everywhere even if it makes 0 sense or brings little benefit. Use it where you gain something.` Couldn't agree more. 
         
 
-This is an another great talk by **Dave Cheney** on implementing SOLID principle in Go : [Golang UK Conference 2016 - Dave Cheney - SOLID Go Design](https://www.youtube.com/watch?v=zzAdEt3xZ1M)  
+This is an another great talk by **Dave Cheney** on implementing SOLID principle in Go : 
+* [Golang UK Conference 2016 - Dave Cheney - SOLID Go Design](https://www.youtube.com/watch?v=zzAdEt3xZ1M)  
 
-[Postel’s Law](https://en.wikipedia.org/wiki/Robustness_principle)
+* [Postel’s Law](https://en.wikipedia.org/wiki/Robustness_principle)
 **"Be conservative with what you do, be liberal with you accept"**
 
 In Go that becomes:
@@ -109,16 +118,21 @@ The Go community discourage to not to use a Web framework mostly for Go.
 
 Since in Go the concept of Object is not completely present why do you try to use it to Object Relational Mapping. Where you'll also lose some control/freedom, most of the ORM's are slow as well (so far).   
 
-SQL package is pretty much all you need for doing SQL stuff, I use [sqlx](https://github.com/jmoiron/sqlx) package sometimes, it's just wrapper of SQL package, it has all the feature that `SQL` package has. By using it you can avoid manually scannings all the values from SQL to your data types.  \
+SQL package is pretty much all you need for doing SQL stuff, I use 
+* [sqlx](https://github.com/jmoiron/sqlx) package sometimes.
+
+ It's just wrapper of SQL package, it has all the feature that `SQL` package has. By using it you can avoid manually scannings all the values from SQL to your data types.  \
 
 
 ## Interface
 
 If you are confused about interface when to use it, you probably shouldn't use interface. You will know it when you need to use interfaces. 
 
-A good article by **William Kennedy** called [Avoid Interface Pollution](https://www.ardanlabs.com/blog/2016/10/avoid-interface-pollution.html) 
+A good article by **William Kennedy** called 
+* [Avoid Interface Pollution](https://www.ardanlabs.com/blog/2016/10/avoid-interface-pollution.html) 
 
-This is also another good artcile on how/when to use interface [How To Use Go Interfaces](https://blog.chewxy.com/2018/03/18/golang-interfaces/) 
+This is also another good artcile on how/when to use interface 
+* [How To Use Go Interfaces](https://blog.chewxy.com/2018/03/18/golang-interfaces/) 
 
 ## Writing Unit Test 
 A Good Go(Gopher) developer loves to write tests and don't want to avoid it. 
