@@ -4,16 +4,14 @@ If you learned some Go and want to learn how to write idiomatic Go code then my 
 
 In this writing, I'm trying to made some bullet-points with little details, which are some practices that I follow and some of them are widely adopted/recommended by the Go community.  
 
-##  * [Error Handling](#Error-Handling)
-##  * [Project Structure](#Error-Handling)
-##  * [HTTP Router](#Router)
-##  * [Design Pattern](#Design-pattern-/-Best-practices)
-##  * [ORM/Framework or Not](#No-ORM-or-Frameworks-is-a-better-choice)
-## * [Interface](#Interface)
+##   [Error Handling](#Error-Handling)
+##   [Project Structure](#Error-Handling)
+##   [HTTP Router](#Router)
+##   [Design Pattern](#Design-pattern-/-Best-practices)
+##   [ORM/Framework or Not](#No-ORM-or-Frameworks-is-a-better-choice)
+##  [Interface](#Interface)
 
-**Errors are just values**
-
-                - Go Proverb
+**Errors are just values**  - Go Proverb
 
 ## Error Handling
 
