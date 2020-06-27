@@ -1,4 +1,4 @@
-# Idomatic Go 
+# Idiomatic Go 
 
 If you learned some Go and want to learn how to write idiomatic Go code then my suggestion would be read the all the Go proverbs available out there [Go Proverb](https://go-proverbs.github.io/). And along the way of your learning spend sometime with each of them and get the idea what actually it means. Most of the Go-proverbs are intiatiated by Rob Pike and he also gave talk on most of them.  
 
@@ -9,6 +9,7 @@ In this writing, I'm trying to made some bullet-points with little details, whic
 ##  * [HTTP Router](#Router)
 ##  * [Design Pattern](#Design-pattern-/-Best-practices)
 ##  * [ORM/Framework or Not](#No-ORM-or-Frameworks-is-a-better-choice)
+## * [Interface](#Interface)
 
 **Errors are just values**
 
@@ -16,7 +17,7 @@ In this writing, I'm trying to made some bullet-points with little details, whic
 
 ## Error Handling
 
-A great talk by Dave Chaney on error handling, very consize and practical: [GopherCon 2016: Dave Cheney - Dont Just Check Errors Handle Them Gracefully](https://www.youtube.com/watch?v=lsBF58Q-DnY) 
+A great talk by **Dave Cheney** on error handling, very consize and practical: [GopherCon 2016: Dave Cheney - Dont Just Check Errors Handle Them Gracefully](https://www.youtube.com/watch?v=lsBF58Q-DnY) 
 
 i.e. When returning error from a function and needs to add cintext to the error, use Wrap function like this: 
 
@@ -54,10 +55,13 @@ At the time I started learning or working with `Go`, the big issue was probably 
 
 But there is a thrid one, which is Go project structure. Which could be confusing for those are just newcomer in `Go`. 
 
-In the beginning I used global variable to store database instance, you know that's a bad practice, right? Even though it could just work fine! 
+In the beginning I used global variable to store database instance, you know that's a bad practice, right? Even though it could just work fine!  
 
+Later storing it into the struct was the solution, **Mat Ryer** gave/wrote a nice talk on this topic called [How I write Go HTTP services after seven years](https://medium.com/@matryer/how-i-write-go-http-services-after-seven-years-37c208122831)  
 
-In Go community for creating Go project structure, the most mentioned and recommended layout is probaly this one [Standard Package Layout](https://medium.com/@benbjohnson/standard-package-layout-7cdbc8391fc1) written by **Ben Johnson**. Which is widely adopted in the gophers community. And this is the one I tend to follow these days.
+All though my journy with Go like 3 year or so, I found quite similar pattern while making HTTP services. This approach is very clean and easy to implement. It works well for plain HTTP services.      
+
+But if it's about project structure then this one is probably most mentioned and recommended layout for creating big Go project: [Standard Package Layout](https://medium.com/@benbjohnson/standard-package-layout-7cdbc8391fc1) written by **Ben Johnson**. Which is widely adopted in the gophers community. And this is the one I tend to follow these days.
 
 ## Router 
 
@@ -83,15 +87,22 @@ Final thought, I'll quote a comment from this [thread](https://www.reddit.com/r/
 
  Go is not a OOP language, people tend to do that a lot like implemnting pure OOP pattern whose are come from OOP language. Go is a C like language with the modern features and easier to writing code. Yet you can adapt some good parts/feature from OOP in Go.       
 
-In idiomatic Go your interface{} should be small like they way it is used in the standard packages. So if you want to loosely couple your code for future modification or extendings by following some design pattern like clean-architecture do it in the way that it looks like Go. Avoid writing the code same way you would write in a pure OOP langauge. 
+In idiomatic Go your interface{} should be small like they way it is used in the standard packages. So if you want to loosely couple your code for future modification or extendings by following some design pattern like clean-architecture, do it in the way that it looks like Go. Avoid writing the code same way you used to write in a pure OOP langauge. 
 
 As someone I was talking to earlier, where he said clean-architecture `-- it's just two API level, One to actually do everything and one to hook it up to the outside world(http, gRPC,websockets, you could also maybe turn it into a CLI easily or any other protocol if you need). There is a third level below the business logic to handle things like talking to shipping companies, xlsx export, etc. People tend to not think about things once they find a term and become diehard fans using it everywhere even if it makes 0 sense or brings little benefit. Use it where you gain something.` Couldn't agree more. 
         
 
-This is an another great talk by Dave Chaney on implementing SOLID principle in Go : [Golang UK Conference 2016 - Dave Cheney - SOLID Go Design](https://www.youtube.com/watch?v=zzAdEt3xZ1M)  
+This is an another great talk by **Dave Cheney** on implementing SOLID principle in Go : [Golang UK Conference 2016 - Dave Cheney - SOLID Go Design](https://www.youtube.com/watch?v=zzAdEt3xZ1M)  
+
+[Postel’s Law](https://en.wikipedia.org/wiki/Robustness_principle)
+**"Be conservative with what you do, be liberal with you accept"**
+
+In Go that becomes:
 
 >**A great rule of thumb for Go is accept interfaces, return structs.**
                                                          –Jack Lindamood 
+
+Design your function that way that it accepts interfaces and returns structs. It's like classic Go pattern. You will see that a lot standard or in third party libraries.    
 
 
 ## No ORM or Frameworks is a better choice 
@@ -100,6 +111,21 @@ The Go community discourage to not to use a Web framework mostly for Go.
 
 Since in Go the concept of Object is not completely present why do you try to use it to Object Relational Mapping. Where you'll also lose some control/freedom, most of the ORM's are slow as well (so far).   
 
-SQL package is pretty much all you need for doing SQL stuff, I use [sqlx](https://github.com/jmoiron/sqlx) package sometimes, it's just wrapper of SQL package, it has all the feature that `SQL` package has. By using it you can avoid manually scannings all the values from SQL to your data types.  
+SQL package is pretty much all you need for doing SQL stuff, I use [sqlx](https://github.com/jmoiron/sqlx) package sometimes, it's just wrapper of SQL package, it has all the feature that `SQL` package has. By using it you can avoid manually scannings all the values from SQL to your data types.  \
+
+
+## Interface
+
+If you are confused about interface when to use it, you probably shouldn't use interface. You will know it when you need to use interfaces. 
+
+A good article by **William Kennedy** called [Avoid Interface Pollution](https://www.ardanlabs.com/blog/2016/10/avoid-interface-pollution.html) 
+
+This is also another good artcile on how/when to use interface [How To Use Go Interfaces](https://blog.chewxy.com/2018/03/18/golang-interfaces/) 
+
+## Writing Unit Test 
+A Good Go(Gopher) developer loves to write tests and don't want to avoid it. 
+Go has a good echo-system for writing test. Thus it encourage you write unit test for most of your function. I think Go developers are currently way ahead of other developers if it's about how much test coverage they have. 
+If you don't do TDD, write the test at least when you are testing your function, if that makes sense.
+
 
                                                                                                                    
