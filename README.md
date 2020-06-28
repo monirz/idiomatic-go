@@ -28,6 +28,13 @@ i.e. When returning error from a function and needs to add cintext to the error,
 
 Don't inspect the error with  `error.Error()`, to check the error type. It's for the human, not for the code. Use  custom error type for checking error type. For example, when reading data from the sql database if it returns an error, we don't know error type but if we want to check if it's the error `not found rows`  or something we can check it like this: Design pattern / Best practices
 
+```go
+   	if errors.Cause(err) == sql.ErrNoRows {
+		log.Println("--> err ", err)
+	}
+
+```
+
 In that avobe example ErrNoRows is a custom error data type defined by sql package which is to check if the error is: `no rows in result set`.  
 
 Another good example for checking duplicate entry/ breaking unique key constraint could be something like this:
