@@ -35,7 +35,7 @@ Don't inspect the error with  `error.Error()`, to check the error type. It's for
 
 ```
 
-In that avobe example ErrNoRows is a custom error data type defined by sql package which is to check if the error is: `no rows in result set`.  
+In that above example ErrNoRows is a custom error data type defined by sql package which is to check if the error is: `no rows in result set`.  
 
 Another good example for checking duplicate entry/ breaking unique key constraint could be something like this:
 
@@ -60,17 +60,17 @@ More details on the customer error type wrapping and unwrapping could be found i
 
 At the time I started learning or working with `Go`, the big issue was probably dependency management and  also Generics. The first one is solved and `go mod` works very smoothly for managing/vendoring dependency. They second one is on the processing of implementing.     
 
-But there is a thrid one, which is Go project structure. Which could be confusing for those are just newcomer in `Go`. 
+But there is a third one, which is Go project structure. Which could be confusing for those are just newcomer in `Go`. 
 
-In the beginning I used global variable to store database instance, you know that's a bad practice, right? Even though it could just work fine!  
+In the beginning I used global variable to store database instance, that's a bad practice. Even though it could just work fine!  
 
 Later storing it into the struct was the solution, **Mat Ryer** gave/wrote a nice talk on this topic called 
 * [How I write Go HTTP services after seven years](https://medium.com/@matryer/how-i-write-go-http-services-after-seven-years-37c208122831)  
 
-All though my journy with Go like 3 year or so, I found quite similar pattern while making HTTP services. This approach is very clean and easy to implement. It works well for plain HTTP services.      
+All though my journey with Go like 3 year or so, I found quite similar pattern while making HTTP services. This approach is very clean and easy to implement. It works well for plain HTTP services.      
 
 But if it's about project structure then this one is probably most mentioned and recommended layout for creating big Go project:
-* [Standard Package Layout](https://medium.com/@benbjohnson/standard-package-layout-7cdbc8391fc1) written by **Ben Johnson**. Which is widely adopted in the gophers community. And this is the one I tend to follow these days.
+* [Standard Package Layout](https://medium.com/@benbjohnson/standard-package-layout-7cdbc8391fc1) written by **Ben Johnson**. Which is widely adopted in the gopher community. And this is the one I tend to follow these days.
 
 ## Router 
 
@@ -94,11 +94,11 @@ Final thought, I'll quote a comment from this
 
 ## Design pattern / Best practices
 
- People come from other languages to Go, they try write the way code they used write code in their favorite language. When you are learning a new langauge it's just not the syntax, it's the whole echo-system and best practices of that language. 
+ People come from other languages to Go, they try write the way code they used write code in their favorite language. When you are learning a new langauge it's just not the syntax, it's the whole eco-system and best practices of that language. 
  
  * **[When in Go, do as the Gopher do](https://talks.golang.org/2014/readability.slide#1)**  
 
- Go is not a OOP language, people tend to do that a lot like implemnting pure OOP pattern whose are come from OOP language. Go is a C like language with the modern features and easier to writing code. Yet you can adapt some good parts/feature from OOP in Go.       
+ Go is not an OOP language, people tend to do that a lot like implementing pure OOP pattern whose are come from OOP language. Go is a C like language with the modern features and easier to writing code. Yet you can adapt some good parts/feature from OOP in Go.       
 
 In idiomatic Go your interface{} should be small like they way it is used in the standard packages. So if you want to loosely couple your code for future modification or extendings by following some design pattern like clean-architecture, do it in the way that it looks like Go. Avoid writing the code same way you used to write in a pure OOP langauge. 
 
@@ -128,12 +128,12 @@ Since in Go the concept of Object is not completely present why do you try to us
 SQL package is pretty much all you need for doing SQL stuff, I use 
 * [sqlx](https://github.com/jmoiron/sqlx) package sometimes.
 
- It's just wrapper of SQL package, it has all the feature that `SQL` package has. By using it you can avoid manually scannings all the values from SQL to your data types.  \
+It's just wrapper of SQL package, it has all the feature that `SQL` package has. By using it you can avoid manually scannings all the values from SQL to your data types.
 
 
 ## Interface
 
-If you are confused about interface when to use it, you probably shouldn't use interface. You will know it when you need to use interfaces. 
+If you are confused about interfaces and when to use them, you probably shouldn't use interface. You will know it when you need to use interfaces. 
 
 A good article by **William Kennedy** called 
 * [Avoid Interface Pollution](https://www.ardanlabs.com/blog/2016/10/avoid-interface-pollution.html) 
@@ -142,8 +142,8 @@ This is also another good artcile on how/when to use interface
 * [How To Use Go Interfaces](https://blog.chewxy.com/2018/03/18/golang-interfaces/) 
 
 ## Writing Unit Test 
-A Good Go(Gopher) developer loves to write tests and don't want to avoid it. 
-Go has a good echo-system for writing test. Thus it encourage you write unit test for most of your function. 
+A Good Go (Gopher) developer loves to write tests and don't want to avoid it. 
+Go has a good eco-system for writing test. Thus it encourage you write unit test for most of your function. 
 
 I think Go developers are currently way ahead of other developers if it's about how much test coverage they have  in their projects. 
 If you don't do TDD, write the test at least when you are testing your function, if that makes sense.
